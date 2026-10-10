@@ -1,0 +1,1 @@
+# PyQt6_app_trial
