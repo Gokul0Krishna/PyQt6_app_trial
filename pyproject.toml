@@ -1,0 +1,7 @@
+[build-systems]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "nlp to bash"
+version = "0.0.0"
