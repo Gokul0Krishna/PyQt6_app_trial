@@ -1,1 +1,3 @@
 .venv
+src/app/gui/__pycache__/*
+src/app/core/__pycache__/*
