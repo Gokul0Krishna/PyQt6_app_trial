@@ -4,7 +4,7 @@ from PyQt6.QtWidgets import (
     QMainWindow, QWidget, QVBoxLayout, QHBoxLayout,
     QPushButton, QLineEdit, QLabel, QListWidget, QMessageBox
 )
-from ..core.ai_conn import AIConnection
+from core.ai_conn import AI_response
 from PyQt6.QtCore import Qt
 
 
@@ -40,8 +40,8 @@ class MainWindow(QMainWindow):
         self.statusBar().showMessage("Ready")
 
         # --- Connect signals to slots ---
-        self.add_button.clicked.connect(self.add_item)
-        self.input_field.returnPressed.connect(self.add_item)
+        self.add_button.clicked.connect(self.process_query)
+        self.input_field.returnPressed.connect(self.process_query)
         self.clear_button.clicked.connect(self.clear_items)
         self.item_list.itemClicked.connect(self.on_item_clicked)
 

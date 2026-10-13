@@ -3,7 +3,7 @@ requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [project]
-name = "pyqt6-app-trial"
+name = "nlp-to-bash"
 version = "0.1.0"
 description = "A small PyQt6 application for turning natural-language prompts into shell commands."
 readme = "README.md"
