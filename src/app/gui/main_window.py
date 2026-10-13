@@ -4,6 +4,7 @@ from PyQt6.QtWidgets import (
     QMainWindow, QWidget, QVBoxLayout, QHBoxLayout,
     QPushButton, QLineEdit, QLabel, QListWidget, QMessageBox
 )
+from ..core.ai_conn import AIConnection
 from PyQt6.QtCore import Qt
 
 
@@ -44,15 +45,24 @@ class MainWindow(QMainWindow):
         self.clear_button.clicked.connect(self.clear_items)
         self.item_list.itemClicked.connect(self.on_item_clicked)
 
-    def add_item(self):
-        """Slot: read input and append to the list."""
+    def process_query(self):
+        """Slot: send query to local Ollama LLM and display result."""
         text = self.input_field.text().strip()
         if not text:
-            self.statusBar().showMessage("Cannot add empty item!", 3000)
+            self.statusBar().showMessage("Cannot send empty query!", 3000)
             return
-        self.item_list.addItem(text)
-        self.input_field.clear()
-        self.statusBar().showMessage(f"Added: {text}", 3000)
+
+        self.statusBar().showMessage("Generating command...", 3000)
+        
+        try:
+            # Call your AI function
+            result = AI_response(text)
+            # Add both prompt and result or just result to the list
+            self.item_list.addItem(f"Q: {text}\nCmd: {result.strip()}")
+            self.input_field.clear()
+            self.statusBar().showMessage("Done", 3000)
+        except Exception as e:
+            self.statusBar().showMessage(f"Error: {str(e)}", 4000)
 
     def clear_items(self):
         """Slot: confirm, then clear the list."""
